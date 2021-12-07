@@ -1,21 +1,13 @@
-from django.urls import path, include
+from django.shortcuts import render
+from django.http import HttpResponse
 
-from django.contrib import admin
+from .models import Greeting
 
-admin.autodiscover()
+# Create your views here.
+def home(request):
+    # return HttpResponse('Hello from Python!')
+    return render(request, "layouts/home.html")
 
-import hello_world.views
-
-# To add a new path, first import the app:
-# import blog
-#
-# Then add the new path:
-# path('blog/', blog.urls, name="blog")
-#
-# Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
-
-urlpatterns = [
-    path("", hello_world.views.index, name="index"),
-    path("db/", hello_world.views.db, name="db"),
-    path("admin/", admin.site.urls),
-]
+def new(request):
+    # return HttpResponse('Hello from Python!')
+    return render(request, "layouts/new.html")

@@ -5,10 +5,17 @@ By ronyman.com
 """
 import os
 import django_heroku
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# Include BOOTSTRAP5_FOLDER in path
+BOOTSTRAP5_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "bootstrap5"))
+if BOOTSTRAP5_FOLDER not in sys.path:
+    sys.path.insert(0, BOOTSTRAP5_FOLDER)
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
-    'apps.hello_world'
+    'bootstrap5',
+    'core',
+    'apps.hello_world',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +130,11 @@ STATIC_URL = "/static/"
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+
+# Settings for django-bootstrap-v5
+BOOTSTRAP5 = {
+    "error_css_class": "bootstrap5-error",
+    "required_css_class": "bootstrap5-required",
+    "javascript_in_head": True,
+}

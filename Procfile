@@ -1,1 +1,1 @@
-web: gunicorn WebPres.wsgi
+web: gunicorn webpres-core.wsgi
