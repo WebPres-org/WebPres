@@ -11,9 +11,9 @@ from django.conf.urls.static import static
 
 import apps.hello_world.views
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", apps.hello_world.views.home, name="home"),
-    path("new", apps.hello_world.views.new, name="new"),
+    path('admin', admin.site.urls),
+    path("", apps.hello_world.views.home, name='home'),
+    path('new', apps.hello_world.views.new, name='new'),
     #path('', include('apps.hello_world.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

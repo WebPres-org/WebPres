@@ -1,16 +1,19 @@
+
+{% include "includes/header/meta.html" %}
+{% include "includes/header/css.html" %}
+{% include "includes/header/nav.html" %}
 {% load bootstrap5 %}
 {% block bootstrap5_content %}
+{% load static %}
     <div class="container">
         <h1>{% block title %}Hello World From WebPres{% endblock %}</h1>
-
-        <p>
-            <a href="{% url 'home' %}">home</a>
-            <a href="{% url 'new' %}">Create A New Page</a>
-        </p>
 
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 
         {% block content %}(no content){% endblock %}
     </div>
 
+{% include "includes/footer/copyrights.html" %}
+{% include "includes/powered-by/webpres.html" %}
+{% include "includes/footer/JavaScript.html" %}
 {% endblock %}
