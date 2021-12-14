@@ -20,6 +20,7 @@ from filebrowser.utils import get_modified_time, path_strip, process_image
 
 from .namers import get_namer
 
+
 if STRICT_PIL:
     from PIL import Image
     from PIL import ImageFile
