@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     'core',
     'apps.hello_world',
     'tinymce',
+    'grappelli.dashboard',
     'grappelli',
     'filebrowser',
+
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -297,3 +300,10 @@ _('Image')
 _('Video')
 _('Document')
 _('Audio')
+
+
+#### GRAPPELLI
+GRAPPELLI_INDEX_DASHBOARD = 'WebPres.dashboard.CustomIndexDashboard'
+GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
+    'webpres.admin.admin_site': 'webpres.my_dashboard.CustomIndexDashboard',
+}

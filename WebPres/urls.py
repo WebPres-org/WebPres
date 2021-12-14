@@ -7,6 +7,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+
+import filebrowser.views
 from filebrowser.sites import site
 from django.conf.urls import include, url
 
@@ -18,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", apps.hello_world.views.home, name='home'),
     path('new/', apps.hello_world.views.new, name='new'),
+    path('admin/filebrowser/upload/upload/', filebrowser.views.upload, name='upload'),
     #path('', include('apps.hello_world.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
