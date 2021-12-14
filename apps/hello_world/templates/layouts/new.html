@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% include "header/script.html" %}
 {% load static %}
 {% load bootstrap5 %}
 <!DOCTYPE html>
@@ -8,7 +9,17 @@
     <title>Create A New Page</title>
 </head>
 <body>
-{% block title %}Hello World{% endblock %}
+
+
+{% block title %}
+
+<textarea>
+    tinymce.init({
+  selector: 'textarea',  // change this value according to the HTML
+  toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+});
+    Welcome to TinyMCE!
+  </textarea>{% endblock %}
 
 {% block content %}
     This is <em>an</em> Opensource WebPres  <strong>Free Site Builder</strong>.

@@ -7,13 +7,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from filebrowser.sites import site
+from django.conf.urls import include, url
 
 
 import apps.hello_world.views
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/filebrowser/', site.urls),
+    path('grappelli/', include('grappelli.urls')),
+    path('admin/', admin.site.urls),
     path("", apps.hello_world.views.home, name='home'),
-    path('new', apps.hello_world.views.new, name='new'),
+    path('new/', apps.hello_world.views.new, name='new'),
     #path('', include('apps.hello_world.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

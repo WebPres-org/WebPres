@@ -13,3 +13,5 @@ class MyAdminSite(AdminSite):
 
 
 admin_site = MyAdminSite()
+
+
