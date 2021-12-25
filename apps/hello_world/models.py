@@ -1,6 +1,7 @@
 from django.db import models
 from filebrowser.settings import ADMIN_THUMBNAIL
 from filebrowser.base import FileObject
+from filebrowser.fields import FileBrowseField
 
 
 
@@ -34,6 +35,19 @@ def image_thumbnail(self, obj):
         return ""
 image_thumbnail.allow_tags = True
 image_thumbnail.short_description = "Thumbnail"
+
+
+
+
+class BlogEntry(models.Model):
+    image = FileBrowseField("Image", max_length=200, directory="images/", extensions=[".jpg"], blank=True)
+    document = FileBrowseField("PDF", max_length=200, directory="documents/", extensions=[".pdf",".doc"], blank=True)
+
+
+
+def new(request, fileobjects):
+     if self.image_upload:
+        return FileObject(self.image_upload.path)
 
 
 class Media:

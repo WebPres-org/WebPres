@@ -1,4 +1,5 @@
 from django.contrib import admin
+from filebrowser.sites import site
 
 # Register your models here.
 from django.contrib.admin import AdminSite
@@ -12,6 +13,4 @@ class MyAdminSite(AdminSite):
 
 
 
-admin_site = MyAdminSite()
-
-
+admin_site = MyAdminSite(name='myadmin')

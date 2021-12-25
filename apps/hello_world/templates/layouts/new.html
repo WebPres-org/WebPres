@@ -8,6 +8,14 @@
     <meta charset="UTF-8">
     <title>Create A New Page</title>
 </head>
+
+
+{{ blogentry.image }}
+<img src="{{ publication.image.url }}" />
+
+{% ifequal blogentry.image.image_orientation "landscape" %}
+    <img src="{{ blogentry.image.url }}" class="landscape" />
+{% endifequal %}
 <body>
 
 

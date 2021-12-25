@@ -1,4 +1,5 @@
 from django.contrib import admin
+from filebrowser.sites import site
 
 # Register your models here.
 from django.contrib.admin import AdminSite
@@ -12,18 +13,4 @@ class MyAdminSite(AdminSite):
 
 
 
-admin_site = MyAdminSite()
-
-
-class CustomIndexDashboard(AdminSite):
-
-    # Text to put in each page's <h1> (and above login form).
-    admin.site.site_header = 'WebPres.org'
-    admin.site.site_title = 'services | ronyman.com'
-    admin.site.index_title = 'WebPres Admin'
-
-
-
-admin_site = CustomIndexDashboard()
-
-
+admin_site = MyAdminSite(name='myadmin')

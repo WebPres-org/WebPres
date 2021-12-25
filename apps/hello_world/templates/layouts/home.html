@@ -1,6 +1,13 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 {% load bootstrap5 %}
+{% block head-meta %}
+  	<meta charset="utf-8">
+  	<!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
+    <meta name="keywords" content="WebPres,org , Opensource CMS Site builder.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,47 +18,26 @@
 {% block title %}Hello World{% endblock %}
 
 {% block content %}
-    This is <em>an</em> Opensource WebPres  <strong>Free Site Builder</strong>.
-<br>
-<br>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      Here is Column Space to write your content
-        <div class="container">
-           <!-- Content here -->
-            <h4>Start to know on webpres site layout</h4>
 
-        </div>
-    </div>
-    <div class="col">
-       Here is Column Space to write your content
-        <div class="container">
-           <!-- Content here -->
-            <h4>Start to know on webpres site static</h4>
-        </div>
-    </div>
-    <div class="col">
-       Here is Column Space to write your content
-        <div class="container">
-           <!-- Content here -->
-            <h4>Start to know on webpres site beta</h4>
-        </div>
-    </div>
-  </div>
-</div>
+<button type="button" class="btn btn-secondary position-relative">
+  Opensource
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+   %100
+    <span class="visually-hidden">Free</span>
+  </span>
+</button>
 
 
 <div class="jumbotron text-center">
   <div class="container">
-    <h1>Free website builder ever...!</h1>
+    <h1>CMS Site Builder</h1>
     <p class="" style="color:red">Recommended Hosting Services.
     <a type="button" class="btn btn-lg btn-default" href="https://bigwebx.com/"><span class="glyphicon glyphicon-ok"></span>[Bigweb X]</a></p>
   </div>
 </div>
 <div class="container">
     <div class="alert alert-info text-center" role="alert">
-    To deploy your own copy, and learn the how to deploy and host site on your own server, head over to the <a href="" class="alert-link">Get Started</a>
+    To deploy your own copy, and learn the how to deploy and host site on your own server, head over to the <a href="https://github.com/WebPres-org/v1.0" class="alert-link">Get Started</a>
   </div>
   <hr>
   <div class="row">
@@ -66,10 +52,10 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
+      <h3><span class="glyphicon glyphicon-link"></span> Install WebPres on Your Own Server</h3>
       <ul>
-        <li>If you are following the <a href="  <li class="nav-item">
-">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
+        <li>If you are following the <a href="https://github.com/WebPres-org/v1.0"  <li class="nav-item">
+Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
         <li>Deploy your app by stackscript: or clone from </li>
         <ul>
           <li><code>https://github.com/WebPres-org/v1.0.git</code> - this will create a local copy of the source code for the app</li>
@@ -88,6 +74,8 @@
   </div> <!-- row -->
 
 </div>
+{% include "includes/footer/sponsored.html" %}
+{% include "legal/copyrights.html" %}
 {% endblock %}
 </body>
 </html>

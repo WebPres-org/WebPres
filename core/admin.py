@@ -12,4 +12,4 @@ class MyAdminSite(AdminSite):
 
 
 
-admin_site = MyAdminSite()
+admin_site = MyAdminSite(name='myadmin')

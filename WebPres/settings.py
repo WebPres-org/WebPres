@@ -9,6 +9,9 @@ import sys
 from filebrowser.sites import site
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from filebrowser.sites import FileBrowserSite
+from django.core.files.storage import DefaultStorage
+
 site.directory = "media/uploads/"
 from pathlib import Path
 
@@ -52,6 +55,8 @@ INSTALLED_APPS = [
     'grappelli.dashboard',
     'grappelli',
     'filebrowser',
+    'apps.user',
+    'crispy_forms'
 
 ]
 
@@ -67,10 +72,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'WebPres.urls'
 
+###Add New
+LOGIN_REDIRECT_URL = "accounts/login.html"
+LOGOUT_REDIRECT_URL = "accounts/logout.html"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -301,6 +310,13 @@ _('Video')
 _('Document')
 _('Audio')
 
+
+# Default FileBrowser site
+site = FileBrowserSite(name='filebrowser', storage=DefaultStorage())
+
+# My Custom FileBrowser site
+#custom_site = FileBrowserSite(name='custom_filebrowser', storage=DefaultStorage())
+site.directory = "media/uploads/"
 
 #### GRAPPELLI
 GRAPPELLI_INDEX_DASHBOARD = 'WebPres.dashboard.CustomIndexDashboard'

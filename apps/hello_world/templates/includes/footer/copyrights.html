@@ -1,3 +1,21 @@
-<div class="alert alert-info text-center" role="alert">
-    © 2022 yourcompany.com
+{% block footer %}
+<div id="footer" style="">
+    <hr/>
+    <div class="container pull-center">
+    <div class="container">
+        <p class="text-muted text-left">&copy;
+           {% now 'Y' %}{{ site_title|default:_('Django site admin') }}</p>
+    </div>
+
+
+    <div class=" text text-right" role="alert">
+    <a href="/privacy" class="text-reset">Privacy Policy.</a>
+    <a href="/terms" class="text-reset">Terms of Used.</a>
+        <a href="/contact" class="text-reset">Contact Us.</a>
   </div>
+
+
+
+</div>
+{% endblock %}
+

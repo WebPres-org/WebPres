@@ -11,16 +11,35 @@ from django.conf.urls.static import static
 import filebrowser.views
 from filebrowser.sites import site
 from django.conf.urls import include, url
+from apps.hello_world.admin import admin_site
 
 
 import apps.hello_world.views
+import apps.user.views
 urlpatterns = [
+
+   #Hello_World
     path('admin/filebrowser/', site.urls),
+    path('myadmin/', admin_site.urls),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path("", apps.hello_world.views.home, name='home'),
     path('new/', apps.hello_world.views.new, name='new'),
     path('admin/filebrowser/upload/upload/', filebrowser.views.upload, name='upload'),
+    path("services/", apps.hello_world.views.services, name="services"),
+    path("sponsored_page/", apps.hello_world.views.sponsored_page, name="sponsored_page"),
+
+   #User
+    path("register/", apps.user.views.register_request, name="register"),
+    path("login/", apps.user.views.login_request, name="login"),
+    path("myprofile/", apps.user.views.profile, name="myprofile"),
+    path("logout/", apps.user.views.logout_request, name= "logout"),
+    path('', include('apps.user.urls')),
+    path("privacy/", apps.hello_world.views.privacy, name="privacy"),
+    path("terms/", apps.hello_world.views.terms, name="terms"),
+    path("contact/", apps.hello_world.views.contact, name="contact"),
+    path('tinymce/', include('tinymce.urls')),
+
     #path('', include('apps.hello_world.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
