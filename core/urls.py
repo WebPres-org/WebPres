@@ -11,13 +11,15 @@ from django.conf.urls.static import static
 import filebrowser.views
 from filebrowser.sites import site
 from django.conf.urls import include, url
-from apps.hello_world.admin import admin_site
+from . import views
 
-
+import apps.hello_world.views
+import apps.user.views
 import core.views
 urlpatterns = [
     # Core_urls
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
+    path('', include('apps.hello_world.urls')),
+    path('', include('apps.user.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

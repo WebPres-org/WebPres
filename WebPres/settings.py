@@ -6,11 +6,13 @@ By ronyman.com
 import os
 import django_heroku
 import sys
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
 from filebrowser.sites import site
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from filebrowser.sites import FileBrowserSite
 from django.core.files.storage import DefaultStorage
+
 
 site.directory = "media/uploads/"
 from pathlib import Path
@@ -56,7 +58,8 @@ INSTALLED_APPS = [
     'grappelli',
     'filebrowser',
     'apps.user',
-    'crispy_forms'
+    'crispy_forms',
+    'fontawesome_free',
 
 ]
 
@@ -323,3 +326,6 @@ GRAPPELLI_INDEX_DASHBOARD = 'WebPres.dashboard.CustomIndexDashboard'
 GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
     'webpres.admin.admin_site': 'webpres.my_dashboard.CustomIndexDashboard',
 }
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
