@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
+
 def register_request(request):
 	if request.method == "POST":
 		form = NewUserForm(request.POST)
@@ -45,3 +46,5 @@ def logout_request(request):
 def profile(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "registration/profile.html")
+
+
