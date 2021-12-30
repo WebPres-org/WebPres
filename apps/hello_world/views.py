@@ -1,22 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 
 
 # Create your views here.
+
 def home(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "layouts/home.html")
 
+# This page require login.
+@login_required(login_url='/login/')
 def new(request):
-    # return HttpResponse('Hello from Python!')
     return render(request, "layouts/new.html")
+
 
 
 def login(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "accounts/login.html")
+
 
 
 def register(request):

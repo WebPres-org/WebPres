@@ -13,9 +13,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to Webpres site</title>
+    {% block title %}Hello World | WebPres.org{% endblock %}
 </head>
 <body>
-{% block title %}Hello World{% endblock %}
+
 
 {% block content %}
 
@@ -32,7 +33,7 @@
   <div class="container">
     <h1>CMS Site Builder</h1>
     <p class="" style="color:red">Recommended Hosting Services.
-    <a type="button" class="btn btn-lg btn-default" href="https://bigwebx.com/"><span class="glyphicon glyphicon-ok"></span>[Bigweb X]</a></p>
+    <a type="button" class="btn btn-lg btn-default" href="https://bigwebx.com/"><span class="glyphicon glyphicon-ok"></span>[Bigweb X]</a> Or &nbsp;<a href="new/">Create A Site</a></p>
   </div>
 </div>
 <div class="container">
