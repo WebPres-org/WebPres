@@ -1,6 +1,6 @@
 from django.contrib import admin
 from filebrowser.sites import site
-from apps.user.models import Profile
+from apps.user.models import UserProfile
 
 
 # Register your models here.
@@ -17,4 +17,4 @@ class MyAdminSite(AdminSite):
 
 
 admin_site = MyAdminSite(name='admin')
-admin.site.register(Profile)
+admin.site.register(UserProfile)
