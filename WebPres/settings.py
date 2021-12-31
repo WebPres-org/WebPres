@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from filebrowser.sites import FileBrowserSite
 from django.core.files.storage import DefaultStorage
+from decouple import config
 
 
 site.directory = "media/uploads/"
@@ -33,8 +34,8 @@ MEDIA_ROOT = getattr(settings, "FILEBROWSER_MEDIA_ROOT", settings.MEDIA_ROOT)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8mw-$za0=7cpse9-c)n!n!tavte#xo^tj)x(*n47q*3y6mdoky'
 
+SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ADMINS = ()

@@ -28,6 +28,7 @@
 
 {% block head %}
 
+
 <nav class="navbar navbar-dark bg-dark"><!--main navbar-->
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
@@ -46,6 +47,7 @@
         <a class="nav-link text-white" href="http://forum.webpres.org/">Forums</a>
       </li>
 
+
       </li>
           <li class="nav-item">
         <a class="nav-link text-white" href="https://github.com/WebPres-org/v1.0/"><i class="fab fa-github"></i>&nbsp;Fork</a>
@@ -63,7 +65,7 @@
      <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href='#' id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Welcome {{request.user}}</a>
     <div class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-    <ul>
+    <ul class="nav justify-content-start">
         <ul><a class="dropdown-item " href="/myprofile/">My Profile</a></ul>
         <ul><a class="dropdown-item" href="/new/">Create New App</a></ul>
           <ul><a class="dropdown-item" href="/logout/">Logout</a></ul>
@@ -84,7 +86,8 @@
  </li>
     </ul>
       </div>
-</nav>
+    </div>
+    </nav>
 {% endblock %}
 
 <!--start Body-->
