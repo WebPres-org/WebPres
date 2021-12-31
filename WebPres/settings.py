@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'apps.user',
     'crispy_forms',
     'fontawesome_free',
+     'decouple',
 
 ]
 
