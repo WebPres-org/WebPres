@@ -15,6 +15,15 @@ from django.core.files.storage import DefaultStorage
 from decouple import config
 
 
+
+
+
+
+
+
+
+
+
 site.directory = "media/uploads/"
 from pathlib import Path
 

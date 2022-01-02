@@ -1,16 +1,16 @@
 from django.contrib import admin
 from filebrowser.sites import site
+from apps.user.models import UserProfile
+from apps.user.admin import UserAdmin
 
-# Register your models here.
-from django.contrib.admin import AdminSite
-
-class HelloWorldAdmin(AdminSite):
+class MyAdminSite(UserProfile):
 
     # Text to put in each page's <h1> (and above login form).
     admin.site.site_header = 'WebPres.org'
     admin.site.site_title = 'Cms Site Builder | WebPres,org'
-    admin.site.index_title = 'Hello World'
+    admin.site.index_title = 'WebPres Admin'
 
 
 
-admin_site = HelloWorldAdmin(name='hello_admin')
+admin_site = MyAdminSite()
+admin.site.register(UserProfile)

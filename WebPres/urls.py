@@ -17,7 +17,7 @@ from apps.hello_world.admin import admin_site
 urlpatterns = [
     # Core_urls
 
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include('core.urls')),
-    path('accounts', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

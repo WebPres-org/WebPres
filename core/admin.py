@@ -1,13 +1,9 @@
 from django.contrib import admin
 from filebrowser.sites import site
 from apps.user.models import UserProfile
+from apps.user.admin import UserAdmin
 
-
-# Register your models here.
-from django.contrib.admin import AdminSite
-
-
-class MyAdminSite(AdminSite):
+class MyAdminSite(UserProfile):
 
     # Text to put in each page's <h1> (and above login form).
     admin.site.site_header = 'WebPres.org'
@@ -16,5 +12,6 @@ class MyAdminSite(AdminSite):
 
 
 
-admin_site = MyAdminSite(name='admin')
+admin_site = MyAdminSite()
 admin.site.register(UserProfile)
+
