@@ -1,52 +1,74 @@
-from django.shortcuts import  render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from django.conf import settings
+from django.contrib.auth.decorators import login_required
+# Import User UpdateForm, ProfileUpdatForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, ProfileForm
 
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Your account has been created! You are now able to log in')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'registration/register.html', {'form': form})
 
-def register_request(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("home")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewUserForm()
-	return render (request=request, template_name="registration/register.html", context={"register_form":form})
+# Update it here
+def login(request):
+    if request.method=="POST":
+        username = request.POST['username']
+        password = request.POST['password']
 
-#Login fuctions request
+        user = authenticate(username=username, password=password)
 
-def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("home")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="registration/login.html", context={"login_form":form})
-
-#User Logout
-def logout_request(request):
-	logout(request)
-	messages.info(request, "You have successfully logged out.")
-	return redirect("home")
-
-
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully Logged In")
+            return redirect("/myprofile")
+        else:
+            messages.error(request, "Invalid Credentials")
+        alert = True
+        return render(request, 'login.html', {'alert':alert})
+    return render(request, "login.html")
+@login_required
 def profile(request):
-    # return HttpResponse('Hello from Python!')
-    return render(request, "registration/profile.html")
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('registration/profile') # Redirect back to profile page
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'registration/profile.html', context)
 
 
+
+def myprofile(request):
+    if request.method=="POST":
+        user = request.user
+        profile = Profile(user=user)
+        profile.save()
+        form = ProfileForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            obj = form.instance
+            return render(request, "registration/profile.html",{'obj':obj})
+    else:
+        form=ProfileForm()
+    return render(request, "registration/profile.html", {'form':form})

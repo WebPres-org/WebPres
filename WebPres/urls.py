@@ -8,17 +8,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-import filebrowser.views
-from filebrowser.sites import site
 from django.conf.urls import include, url
 from apps.hello_world.admin import admin_site
 
 
+
 urlpatterns = [
     # Core_urls
-
+    #path('wp_admin/', wp_admin_site.site.urls),
     path('admin/', admin.site.urls),
-    path('admin', admin.site.urls),
     path('', include('core.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

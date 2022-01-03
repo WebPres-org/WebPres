@@ -3,21 +3,22 @@
 Copyright (c) 2021 ronyman.com
 """
 
-from django.urls import path
-from django.urls import path, include
-from . import views
-from .views import profile
-import apps.user.views
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from apps.user import views as user_views
 
 
 urlpatterns = [
     #User
-    path("register/", apps.user.views.register_request, name="register"),
-    path("login/", apps.user.views.login_request, name="login"),
-    path("myprofile/", apps.user.views.profile, name="Myprofile"),
-    path('profile/', profile, name='users-profile'),
-    path("logout/", apps.user.views.logout_request, name= "logout"),
+    path('admin/', admin.site.urls),
+    path('register/', user_views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('profile/', user_views.profile, name='profile'),
+    path("myprofile/", user_views.myprofile, name="Myprofile"),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('tinymce/', include('tinymce.urls')),
 
     # For PasswordPresset
