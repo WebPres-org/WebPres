@@ -48,13 +48,11 @@ INSTALLED_APPS = [
     'bootstrap5',
     'core',
     'apps.hello_world',
-    'tinymce',
-    'grappelli.dashboard',
-    'grappelli',
     'apps.user',
     'crispy_forms',
     'fontawesome_free',
      'decouple',
+    'blog',
 
 ]
 
@@ -72,7 +70,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'WebPres.urls'
 
 ###Add New
-LOGIN_REDIRECT_URL = "login"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "login"
 
 TEMPLATES = [
@@ -143,12 +141,7 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 
 # List of finder classes that know how to find static files in
@@ -159,10 +152,6 @@ STATICFILES_FINDERS = (
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
@@ -187,6 +176,10 @@ BOOTSTRAP5 = {
 }
 
 
-# Tinyce Text Editor Config.
-TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "path/to/tiny_mce")
-TINYMCE_JS_URL = os.path.join(STATIC_URL, "path/to/tiny_mce/tiny_mce.js")
+
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+# Activate Django-Heroku.
+django_heroku.settings(locals())

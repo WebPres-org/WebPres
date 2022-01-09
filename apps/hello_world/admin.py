@@ -1,8 +1,6 @@
 from django.contrib import admin
-from filebrowser.sites import site
-
-# Register your models here.
 from django.contrib.admin import AdminSite
+
 
 class HelloWorldAdmin(AdminSite):
 
@@ -13,4 +11,7 @@ class HelloWorldAdmin(AdminSite):
 
 
 
-admin_site = HelloWorldAdmin(name='hello_admin')
+
+
+
+admin_site = HelloWorldAdmin(name='webpres_admin')

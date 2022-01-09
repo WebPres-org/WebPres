@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load i18n %}
 {% load static %}
 {% load bootstrap5 %}
 
@@ -24,6 +25,8 @@
 {% block nav-global %}{% endblock %}
 
 {% block content %}
+
+<h3>{{ message }}</h3>
     This is <em>an</em> Opensource WebPres  <strong>Free Site Builder</strong>.
 
 

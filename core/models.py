@@ -1,8 +1,7 @@
 from django.db import models
-from apps.user.models import User
 from PIL import Image
 from django.utils.timezone import now
-
+from apps.user.models import User
 
 class CoreUserProfile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+from django.utils.translation import gettext
 
 
 
@@ -9,12 +9,14 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     # return HttpResponse('Hello from Python!')
-    return render(request, "layouts/home.html")
+
+    return render(request, 'layouts/home.html')
 
 # This page require login.
 @login_required(login_url='/login/')
 def new(request):
-    return render(request, "layouts/new.html")
+    Wellecome_Message = gettext('Welcome to WebPres site!')
+    return render(request, 'layouts/new.html', {'message': Wellecome_Message})
 
 
 
@@ -55,3 +57,4 @@ def services(request):
 def sponsored_page(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "home/sponsored_page.html")
+

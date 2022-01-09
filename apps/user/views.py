@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 # Import User UpdateForm, ProfileUpdatForm
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, ProfileForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
+from .models import Profile, UpdateProfileForm
+from django.views import generic
 
 def register(request):
     if request.method == 'POST':
@@ -72,3 +74,36 @@ def myprofile(request):
     else:
         form=ProfileForm()
     return render(request, "registration/profile.html", {'form':form})
+
+
+def edit_profile(request):
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        #print request.POST
+        if form.is_valid():
+
+            new_profile = Profile(
+                            user = request.user,
+                            bio = request.POST['bio'],
+                            address = request.POST['address'],
+                            age = request.POST['age']
+                            )
+
+            new_profile.save()
+
+            return HttpResponseRedirect(reverse('user_public_profile', args=(request.user.username,)))
+        return render(request,'registration/edit_profile.html', {'form': form})
+
+    else:
+        form = UpdateProfileForm()
+        return render(request,'registration/edit_profile.html',
+                          {'form': form})
+
+class EditProfilePage(generic.CreateView):
+    model = Profile
+    template_name = 'registration/edit_profile_page.html'
+    fields = '__all__'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

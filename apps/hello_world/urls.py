@@ -1,4 +1,4 @@
-from filebrowser.sites import site
+from django.contrib import admin
 from django.urls import path, include
 from . import views
 
@@ -8,8 +8,7 @@ from . import views
 import apps.hello_world.views
 
 urlpatterns = [
-
-    path('grappelli/', include('grappelli.urls')),
+    path('webpres_admin/', admin.site.urls),
     path("", apps.hello_world.views.home, name='home'),
     path('new/', apps.hello_world.views.new, name='new'),
     path("services/", apps.hello_world.views.services, name="services"),
