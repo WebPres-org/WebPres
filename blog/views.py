@@ -1,5 +1,6 @@
 
 from django.views import generic
+from django.views.generic import FormView
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (
@@ -19,11 +20,11 @@ from .models import Post, Comment
 from .forms import CommentForm
 
 ###
-
 class HomeView(ListView):
-    template_name = 'posts/index.html'
-    queryset = Post.objects.all()
-    paginate_by = 2
+        template_name = 'posts/index.html'
+        queryset = Post.objects.all()
+        context_object_name = 'post_list'
+        paginate_by = 2
 
 
 class PostView(DetailView):
@@ -74,12 +75,14 @@ class PostView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ["title", "content", "image", "tags"]
+    #fields = ["title", "content", "image", "tags"]
+    fields = '__all__'
+
 
     def get_success_url(self):
         messages.success(
             self.request, 'Your post has been created successfully.')
-        return reverse_lazy("posts:index")
+        return reverse_lazy("index")
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -91,7 +94,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ["title", "content", "image", "tags"]
+    #fields = ["title", "content", "image", "tags"]
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -103,7 +107,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         messages.success(
             self.request, 'Your post has been updated successfully.')
-        return reverse_lazy("posts:index")
+        return reverse_lazy("index")
 
     def get_queryset(self):
         return self.model.objects.filter(author=self.request.user)
@@ -115,26 +119,9 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         messages.success(
             self.request, 'Your post has been deleted successfully.')
-        return reverse_lazy("posts:index")
+        return reverse_lazy("index")
 
     def get_queryset(self):
         return self.model.objects.filter(author=self.request.user)
 ##################
-@login_required(login_url='/login/')
-class AddPostView(generic.CreateView):
-    model = Post
-    template_name = 'posts/add_post.html'
-    fields = '__all__'
-
-
-class PostList(generic.CreateView):
-    model = Post
-    template_name = 'posts/index.html'
-    fields = ''
-
-
-class PostDetail(generic.CreateView):
-    model = Post
-    template_name = 'posts/post_detail.html'
-    fields = '__all__'
 

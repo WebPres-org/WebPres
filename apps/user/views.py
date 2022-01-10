@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 # Import User UpdateForm, ProfileUpdatForm
-from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
+from .forms import UserRegisterForm, UserUpdateForm, EditProfileForm, ProfileForm
 from .models import Profile, UpdateProfileForm
 from django.views import generic
 
@@ -66,13 +66,13 @@ def myprofile(request):
         user = request.user
         profile = Profile(user=user)
         profile.save()
-        form = ProfileForm(data=request.POST, files=request.FILES)
+        form = EditProfileForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             obj = form.instance
             return render(request, "registration/profile.html",{'obj':obj})
     else:
-        form=ProfileForm()
+        form=EditProfileForm(Profile)
     return render(request, "registration/profile.html", {'form':form})
 
 
@@ -80,7 +80,7 @@ def edit_profile(request):
 
     if request.method == 'POST':
         form = ProfileForm(request.POST)
-        #print request.POST
+        print = request.POST
         if form.is_valid():
 
             new_profile = Profile(

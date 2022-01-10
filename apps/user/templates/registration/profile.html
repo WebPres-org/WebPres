@@ -13,30 +13,31 @@
     <meta name="keywords" content="WebPres UserProfile , Profile.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block head_title %}{{ user.username }} | WebPres.org{% endblock head_title %}
     {% endblock %}
-{% load crispy_forms_tags %}
+
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="card col-lg-6 offset-lg-3 mb-3">
+      <div class="row">
+        {% if user.profile.image %}
+        <img class="card-img-top col-sm-3 col-4 my-3" src="{{ user.profile.image.url }}" alt="{{ user.username }}">
+        {% else %}
+        <img class="card-img-top col-sm-3 col-4 my-3" src="{% static '/default/user.png' %}" alt="{{ user.username }}">
+        {% endif %}
+        <div class="card-body col-9">
+          <h2 class="card-title my-3">{{ user.username }}</h2>
+          <p>Last login on: {{ user.last_login }}</p>
+          <p><a href="{% url 'edit_profile' %}">Edit your profile</a></p>
+          <p><a href="{% url 'password_change' %}">Change password</a></p>
+           <p class="card-text">{{ user.profile.about_me }}</p>
         </div>
       </div>
-      <!-- FORM HERE -->
-      <form method="POST" enctype="multipart/form-data" action="/edit_profile/">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ u_form|crispy }} <!-- User form -->
-            {{ p_form|crispy }} <!-- Profile form -->
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update Profile</button>
-
-        </div>
-    </form>
     </div>
+  </div>
+</div>
+
 {% include "legal/copyrights.html" %}
 {% endblock %}
