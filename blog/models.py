@@ -1,6 +1,11 @@
+
 from django.db import models
 from django.contrib.auth.models import User
-
+from datetime import datetime, date
+from ckeditor.fields import RichTextField
+from django.db.models.base import Model
+from django.db.models.signals import pre_save
+from blog.utils import unique_slug_generator
 
 STATUS = (
     (0,"Draft"),
@@ -8,40 +13,37 @@ STATUS = (
 )
 
 
-### Add New.
+
+class PostComment(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()
+    create_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.sender.get_username()}'
+
+class Categories(models.Model):
+    categoryname = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.categoryname
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    title_tag = models.CharField(max_length=255, default= " WebPres Today Post")
-    slug = models.SlugField(max_length = 250, null = True, blank = True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='add_post')
-    content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    body = models.TextField()
-    status = models.IntegerField(choices=STATUS, default=0)
-    updated_on = models.DateTimeField(auto_now= True)
-    # The rest of the fields..
-
-    #class Meta:
-        #ordering = ['-created_on'}
-        #abstract = True
-
+    title_tag = models.CharField(max_length=255, default='Blog Post')
+    slug = models.SlugField(max_length=255, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='blog/images', null=True)
+    body = RichTextField(blank=False, null=True)
+    comments = models.ManyToManyField(PostComment, blank=True)
+    post_date = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Categories, null=True, on_delete=models.PROTECT, related_name='category_set')
 
     def __str__(self):
-        return self.title + '|' + str(self.author)
-    def complete_update(self):
-        self.status = 'Complete'
-        self.save()
+        return self.title + ' | ' + str(self.author)
 
+def slug_generator(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
 
-class Comment(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    content = models.TextField()
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ('-created',)
-
-    def __str__(self):
-        return 'Comment by {}'.format(self.name)
+pre_save.connect(slug_generator, sender=Post)

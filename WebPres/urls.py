@@ -12,12 +12,13 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 from apps.hello_world.admin import admin_site
+from graphene_django.views import GraphQLView
 
 
 urlpatterns = [
     # Core_urls
-    #path('wp_admin/', wp_admin_site.site.urls),
     path('admin/', admin.site.urls),
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('', include('core.urls')),
     path('', include('blog.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

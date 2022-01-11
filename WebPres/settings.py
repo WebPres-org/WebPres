@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
     'bootstrap5',
     'core',
     'apps.hello_world',
@@ -53,9 +54,15 @@ INSTALLED_APPS = [
     'fontawesome_free',
      'decouple',
     'blog',
+    'ckeditor',
 
 ]
 
+###Setting for Blog Pos
+GRAPHENE = {
+    'SCHEMA': 'blog.schema.schema'
+}
+###End Setting for Blog Pos
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,8 +1,12 @@
 
-from django.views import generic
-from django.views.generic import FormView
-from .models import Post
+from django.shortcuts import redirect, render
+from django.views.generic import ListView, DetailView
+from .models import Post, Categories, PostComment
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.http import HttpResponseNotFound, Http404
+###
 from django.views.generic import (
     ListView,
     DetailView,
@@ -10,67 +14,80 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 from django.urls import reverse_lazy
 from django.contrib import messages
 
-from .models import Post, Comment
-from .forms import CommentForm
+# Create your views here.
+class blog(ListView):
+   model = Post
+   template_name = 'blog_list.html'
+   context_object_name = 'posts'
+   cats = Categories.objects.all()
+   ordering = ['-post_date']
+   paginate_by = 2
 
-###
-class HomeView(ListView):
-        template_name = 'posts/index.html'
-        queryset = Post.objects.all()
-        context_object_name = 'post_list'
-        paginate_by = 2
+   def get_context_data(self, *args, **kwargs):
+      cat_list = Categories.objects.all()
+      latestpost_list = Post.objects.all().order_by('-post_date')[:3]
+      context = super(blog, self).get_context_data(*args, **kwargs)
+      context["cat_list"] = cat_list
+      context["latestpost_list"] = latestpost_list
+      return context
+
+def search(request):
+   template = 'search_list.html'
+   query = request.GET.get('q')
+   if query:
+      posts = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query)).order_by('-post_date')
+   else:
+      posts = Post.objects.all()
+
+   cat_list = Categories.objects.all()
+   latestpost_list = Post.objects.all().order_by('-post_date')[:3]
+   paginator = Paginator(posts, 2)
+   page = request.GET.get('page')
+   posts = paginator.get_page(page)
+   return render(request, template, {'posts':posts, 'cat_list': cat_list, 'latestpost_list':latestpost_list, 'query':query})
+
+def CategoryView(request, cats):
+   if Categories.objects.filter(categoryname=cats).exists():
+      category_posts = Post.objects.filter(category__categoryname=cats).order_by('-post_date')
+      cat_list = Categories.objects.all()
+      latestpost_list = Post.objects.all().order_by('-post_date')[:3]
+      paginator = Paginator(category_posts, 2)
+      page = request.GET.get('page')
+      category_posts = paginator.get_page(page)
+      return render(request, 'category_list.html', {'cats':cats, 'category_posts':category_posts, 'cat_list': cat_list, 'latestpost_list':latestpost_list})
+   else:
+      raise Http404
+
+class blogdetail(DetailView):
+   model = Post
+   template_name = 'blog_detail.html'
+
+   def get_context_data(self, *args, **kwargs):
+      cat_list = Categories.objects.all()
+      latestpost_list = Post.objects.all().order_by('-post_date')[:3]
+      context = super(blogdetail, self).get_context_data(*args, **kwargs)
+      context["cat_list"] = cat_list
+      context["latestpost_list"] = latestpost_list
+      return context
+
+@login_required(login_url='/login')
+def send_comment(request, slug):
+   message = request.POST.get('message')
+   post_id = request.POST.get('post_id')
+   post_comment = PostComment.objects.create(sender=request.user, message=message)
+   post = Post.objects.filter(id=post_id).first()
+   post.comments.add(post_comment)
+   return redirect('.')
 
 
-class PostView(DetailView):
-    model = Post
-    template_name = "posts/post.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pk = self.kwargs["pk"]
-        slug = self.kwargs["slug"]
-
-        form = CommentForm()
-        post = get_object_or_404(Post, pk=pk, slug=slug)
-        comments = post.comment_set.all()
-
-        context['post'] = post
-        context['comments'] = comments
-        context['form'] = form
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form = CommentForm(request.POST)
-        self.object = self.get_object()
-        context = super().get_context_data(**kwargs)
-
-        post = Post.objects.filter(id=self.kwargs['pk'])[0]
-        comments = post.comment_set.all()
-
-        context['post'] = post
-        context['comments'] = comments
-        context['form'] = form
-
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            content = form.cleaned_data['content']
-
-            comment = Comment.objects.create(
-                name=name, email=email, content=content, post=post
-            )
-
-            form = CommentForm()
-            context['form'] = form
-            return self.render_to_response(context=context)
-
-        return self.render_to_response(context=context)
+###########
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -124,4 +141,3 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         return self.model.objects.filter(author=self.request.user)
 ##################
-
