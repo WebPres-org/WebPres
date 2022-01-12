@@ -70,7 +70,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
     <ul class="nav justify-content-start">
         <ul><a class="dropdown-item " href="{% url 'Myprofile' %}">My Profile</a></ul>
-        <ul><a class="dropdown-item" href="myadmin">My Admin</a></ul>
+        <ul><a class="dropdown-item" href="{% url 'myadmin' %}">My Admin</a></ul>
         <ul><a class="dropdown-item" href="{% url 'post_create' %}">Create Post</a></ul>
           <ul><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></ul>
     </ul>
