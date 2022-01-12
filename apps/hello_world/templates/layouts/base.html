@@ -18,7 +18,7 @@
       <link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
       <link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
       <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
-        <title>{% block bootstrap5_title %}WebPres.org |{{ title }}{% endblock %}</title>
+        <title>{% block bootstrap5_title %}|{{ title }}{% endblock %}</title>
 
 
 
@@ -70,6 +70,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
     <ul class="nav justify-content-start">
         <ul><a class="dropdown-item " href="{% url 'Myprofile' %}">My Profile</a></ul>
+        <ul><a class="dropdown-item" href="myadmin">My Admin</a></ul>
         <ul><a class="dropdown-item" href="{% url 'post_create' %}">Create Post</a></ul>
           <ul><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></ul>
     </ul>
@@ -108,5 +109,7 @@
 </main>
     {# --- js --- #}
     {% block extra_js %}{% endblock %}
+
 </body>
 </html>
+

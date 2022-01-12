@@ -13,8 +13,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Webpres site</title>
-    {% block title %}Hello World | WebPres.org{% endblock %}
+    <title>WebpPres.org</title>
+     {% block bootstrap5_title %} Hello World | WebPres.org{% endblock %}
 </head>
 <body>
 
@@ -79,6 +79,7 @@ Getting Started</a> guide, then please head back to the tutorial and follow the 
 </div>
 
 {% include "includes/footer/sponsored.html" %}
+{% include "layouts/quick_links.html" %}
 {% include "legal/copyrights.html" %}
 {% endblock %}
 </body>

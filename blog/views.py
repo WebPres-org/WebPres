@@ -92,9 +92,16 @@ def send_comment(request, slug):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    #fields = ["title", "content", "image", "tags"]
+    #fields = ["title", "content", "image", "tags"]  # for Specifict Post
     fields = '__all__'
 
+    def create(request):
+        form = PostForm(request.POST or None)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return HttpResponseRedirect('/')
+    #return render(request,'blog/posts_form.html/',{'form':form})
 
     def get_success_url(self):
         messages.success(

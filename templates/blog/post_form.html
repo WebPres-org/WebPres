@@ -2,7 +2,23 @@
 {% load i18n %}
 {% load static %}
 {% load bootstrap5 %}
+{% load i18n %}
+{% load static %}
+{% load bootstrap5 %}
+{% block head-meta %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+  	<!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
+    <meta name="keywords" content="WebPres.org , Post Forms.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
 
+    <meta charset="UTF-8">
+     {% block bootstrap5_title %} Create a Post | WebPres.org{% endblock %}
+</head>
 {% block head_title %}{% if update %}Update post{% else %}Create a post{% endif %}{% endblock head_title %}
 
 {% block content %}
@@ -51,8 +67,9 @@
           <div class="invalid-feedback">{{ form.tags.errors }}</div>
           {% endif %}
         </div>
+          </br>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-dark">
           {% if update %}Update the post{% else %}Create a post{% endif %}
         </button>
       </form>
@@ -60,4 +77,5 @@
         </div>
   </div>
 </div>
+{% include "legal/copyrights.html" %}
 {% endblock content %}

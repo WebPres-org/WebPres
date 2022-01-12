@@ -18,6 +18,7 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     # Core_urls
     path('admin/', admin.site.urls),
+    path('myadmin/', admin.site.urls),# for user admin from profile
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('', include('core.urls')),
     path('', include('blog.urls')),

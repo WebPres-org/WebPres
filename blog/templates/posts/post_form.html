@@ -1,5 +1,19 @@
 {% extends "layouts/base.html" %}
-
+{% load i18n %}
+{% load static %}
+{% load bootstrap5 %}
+{% block head-meta %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+  	<!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
+    <meta name="keywords" content="WebPres.org , Post Create.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+     {% block bootstrap5_title %} Post Create | WebPres.org{% endblock %}
+</head>
 {% block head_title %}{% if update %}Update post{% else %}Create a post{% endif %}{% endblock head_title %}
 
 {% block content %}

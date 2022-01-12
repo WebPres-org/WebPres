@@ -8,3 +8,8 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('name', 'email', 'content')
 
+
+class PostForm(forms.ModelForm):
+class Meta:
+    model = Post
+    fields = ('__all__',)
