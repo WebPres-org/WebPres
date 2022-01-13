@@ -60,7 +60,7 @@ def profile(request):
     return render(request, 'registration/profile.html', context)
 
 
-
+@login_required
 def myprofile(request):
     if request.method=="POST":
         user = request.user
@@ -75,7 +75,7 @@ def myprofile(request):
         form=EditProfileForm(Profile)
     return render(request, "registration/profile.html", {'form':form})
 
-
+@login_required
 def edit_profile(request):
 
     if request.method == 'POST':
@@ -99,14 +99,6 @@ def edit_profile(request):
         form = UpdateProfileForm()
         return render(request,'registration/edit_profile.html',
                           {'form': form})
-
-class EditProfilePage(generic.CreateView):
-    model = Profile
-    template_name = 'registration/edit_profile_page.html'
-    fields = '__all__'
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 ## MyAdmin View from Profile.
 def myadmin(request):
