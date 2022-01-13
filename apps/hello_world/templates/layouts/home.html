@@ -18,24 +18,83 @@
 </head>
 <body>
 
-
 {% block content %}
-
-<button type="button" class="btn btn-secondary position-relative">
-  Opensource
-  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-   %100 free
-    <span class="visually-hidden">Free</span>
-  </span>
-</button>
 
 <div class="jumbotron text-center">
   <div class="container">
     <h1>CMS Site Builder</h1>
-    <p class="" style="color:red">Recommended Hosting Services.
-    <a type="button" class="btn btn-lg btn-default" href="https://bigwebx.com/"><span class="glyphicon glyphicon-ok"></span>[Bigweb X]</a> Or &nbsp;<a href="/post/create/">Create Post</a></p>
   </div>
 </div>
+
+<!--WebPres Banner-->
+
+<img src="{% static 'Images/WebPres_v1.png' %} " class="img-fluid" alt="">
+
+<!----Featured-->
+<div class="container px-4 py-5" id="icon-grid">
+    <h2 class="pb-2 border-bottom">Featured</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Bootrapv5</h4>
+          <p>WebPres v.1.0.is built with Bootrapv5.0</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Languages</h4>
+          <p>Python.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Backend</h4>
+          <p>DB Migrations.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#home"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Hosting</h4>
+          <p>Possibly Host on your own or by WebPres's App.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#speedometer2"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Domain</h4>
+          <p>Custom Domain.</p>
+            <p>Domain Wildcard</p>
+
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#toggles2"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">SSL</h4>
+          <p>Secured your site by SSL protection.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#geo-fill"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Browser</h4>
+          <p>WebPres works for all browsers.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#tools"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Documentation</h4>
+          <p>Available on WebPres's homepage links.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="container">
     <div class="alert alert-info text-center" role="alert">
     To deploy your own copy, and learn the how to deploy and host site on your own server, head over to the <a href="https://github.com/WebPres-org/v1.0" class="alert-link">Get Started</a>
@@ -52,6 +111,7 @@
         <li>Manage Server on your own <a href="https://bigwebx.com/index.php?rp=/store/deploy-modern-app">Check out.</a></li>
       </ul>
     </div>
+
 
 
     <div class="col-md-6">
