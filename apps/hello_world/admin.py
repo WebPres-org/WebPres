@@ -9,9 +9,6 @@ class HelloWorldAdmin(AdminSite):
     admin.site.site_title = 'Cms Site Builder | WebPres,org'
     admin.site.index_title = 'WebPres'
 
-
-
-
-
-
 admin_site = HelloWorldAdmin(name='webpres_admin')
+
+
