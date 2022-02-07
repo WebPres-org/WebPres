@@ -194,7 +194,7 @@ django_heroku.settings(locals())
 ######
 AWS_ACCESS_KEY_ID = os.environ.get('AKIAXBABVM7AK5AY24HW')
 AWS_SECRET_ACCESS_KEY = os.environ.get('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')
-AWS_STORAGE_BUCKET_NAME = 'ronyman'
+AWS_STORAGE_BUCKET_NAME = 'webpres'
 
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_OBJECT_PARAMETERS = {

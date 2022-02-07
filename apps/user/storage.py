@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class MediaStorage(S3Boto3Storage):
-    bucket_name = 'ronyman'
+    bucket_name = 'webpres'
     isfilecached = {}
 
     def isdir(self, name):
