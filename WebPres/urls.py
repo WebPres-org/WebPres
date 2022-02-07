@@ -22,4 +22,5 @@ urlpatterns = [
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('', include('core.urls')),
     path('', include('blog.urls')),
+    path('admin/', include('tinymce.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

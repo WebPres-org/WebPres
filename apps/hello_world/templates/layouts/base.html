@@ -24,8 +24,12 @@
       <link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
         <title>{% block bootstrap5_title %}|{{ title }}{% endblock %}</title>
 
-
-
+<!-- Tiny Text editor -->
+    <script src="https://cdn.tiny.cloud/1/j9q0u50dw1ic0iumm8zryxtjvfzk5ro73ubnuc064rpi993z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- Extra_css -->
+     <link href="{% static 'extra_css/dropdown_menu.css' %}" rel="stylesheet" type="text/css">
+    <!-- Extra_js -->
+     <script src="{% static 'extra_js/extra_menu.js' %}"></script>
     {# --- css --- #}
     {% block extra_css %}{% endblock %}
 
@@ -36,9 +40,6 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
       <img src="{% static 'Assets/brand/webpres-logo.png'%} " alt="" width="50" height="50" class="d-inline-block align-text-top">
-       <span class="position-absolute badge rounded-pill bg-danger">
-          V.1.0
-       </span>
     </a>
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,10 +49,6 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
         <a class="nav-link text-white" href="/">Home</a>
-      </li>
-          <li class="nav-item">
-        <a class="nav-link text-white" href="https://docs.webpres.org/">Docs</a>
-      </li>
           <li class="nav-item">
         <a class="nav-link text-white" href="http://forum.webpres.org/">Forums</a>
       </li>
@@ -59,8 +56,16 @@
           <li class="nav-item">
         <a class="nav-link text-white" href="/post/">Blog</a>
       </li>
-
-
+             </li>
+            <li class="nav-item dropdown">
+                  <a class="nav-link text-white dropdown-toggle " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Versions
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item text-white" href="#">V.1.0</a></li>
+                    <li><a class="dropdown-item text-white" href="#">V.1.1</a></li>
+                  </ul>
+                </li>
       </li>
           <li class="nav-item">
         <a class="nav-link text-white" href="https://github.com/WebPres-org/v1.0/"><i class="fab fa-github"></i>&nbsp;Fork</a>
