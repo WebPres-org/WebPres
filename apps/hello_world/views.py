@@ -58,3 +58,10 @@ def sponsored_page(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "home/sponsored_page.html")
 
+def v1(request):
+    # return HttpResponse('Hello from Python!')
+    return render(request, "menu/webpres_v1.html")
+
+def v1_1(request):
+    # return HttpResponse('Hello from Python!')
+    return render(request, "menu/webpres_v1_1.html")

@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load bootstrap5 %}
+{% block head-meta %}
+  	<meta charset="utf-8">
+  	<!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
+    <meta name="keywords" content="WebPres.org , Opensource CMS Site builder.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Facebook -->
+    <meta property="og:url"                content="https://www.webpres.org/" />
+    <meta property="og:type"               content="WebPres Version1" />
+    <meta property="og:title"              content="Hello World WebPres" />
+    <meta property="og:description"        content="WebPres is a Lightweight website builder ever. WebPres is build in Python is the most popular programming language in the world" />
+    <meta property="og:image"              content="https://scontent.fmel14-1.fna.fbcdn.net/v/t39.30808-6/271831274_106187468626862_4528830638432417584_n.png?_nc_cat=110&ccb=1-5&_nc_sid=730e14&_nc_ohc=krUprzrgUFEAX-KCKWn&_nc_ht=scontent.fmel14-1.fna&oh=00_AT-ztPkwek43N1ADmkFoxMXZUIKx9ogEv0RTYjbgVb4-pw&oe=61E6277D" />
+    {% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebpPres.org</title>
+     {% block bootstrap5_title %} WebPres Version1 | WebPres.org{% endblock %}
+</head>
+<body>
+
+{% block content %}
+
+<main>
+    <div class="card text-center">
+  <div class="card-header">
+    <strong class="text-warning">V.1.0</strong>
+    </div>
+          <div class="card-body">
+                <h1>Get Stable Version</h1>
+                <p>WebPres is FREE to download this stable version from <a class="nav-link text-info" href="https://github.com/ronyman-com/WebPres/releases/tag/WebPres"><i class="fab fa-github"></i>&nbsp;Download</a>.</p>
+                <p>If it hard to go feel free to contact us or purchase set up fee from us.</p>
+    <div class="mb-5">
+      <a href="https://bigwebx.com/webpres.php" class="btn btn-info btn-sm px-4">Buy Stable WebPres</a>
+          </div>
+
+</div>
+
+
+
+
+
+
+
+<h3>{{ copyrights }}</h3>
+</div>
+
+{% include "includes/footer/sponsored_by.html" %}
+{% include "includes/footer/people_by.html" %}
+{% include "layouts/quick_links.html" %}
+{% include "legal/copyrights.html" %}
+{% endblock %}
+</body>
+</html>
