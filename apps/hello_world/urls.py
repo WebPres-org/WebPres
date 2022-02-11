@@ -18,6 +18,7 @@ urlpatterns = [
     path("privacy/", apps.hello_world.views.privacy, name="privacy"),
     path("terms/", apps.hello_world.views.terms, name="terms"),
     path("contact/", apps.hello_world.views.contact, name="contact"),
+    path("ads.txt/", apps.hello_world.views.ads, name="ads"),
 ]
 
 

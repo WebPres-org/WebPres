@@ -65,3 +65,7 @@ def v1(request):
 def v1_1(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "menu/webpres_v1_1.html")
+
+def ads(request):
+    # for google adSense')
+    return render(request, "layouts/ads.txt")

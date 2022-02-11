@@ -15,6 +15,13 @@
     <meta charset="UTF-8">
      {% block bootstrap5_title %} Blog Post | WebPres.org{% endblock %}
 </head>
+<div class="p-3 mb-2 bg-dark text-white " style=" width: 400px;
+  margin: auto;">
+    <div class="text text-center" style="
+  margin: auto;">
+         <img src="{% static 'Assets/brand/webpres-logo.png'%} " alt="" width="80" height="80">
+    </div>
+  <div class="card-body">
      <div class="container">
        {% block content %}
          {% for i in object_list %}
@@ -25,5 +32,8 @@
          {% endfor %}
         {% endblock content %}
      </div>
+      </div>
+    </div>
+</div>
  </body>
 </html>
