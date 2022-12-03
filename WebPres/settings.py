@@ -192,8 +192,8 @@ MEDIA_URL = '/media/'
 django_heroku.settings(locals())
 
 ######
-AWS_ACCESS_KEY_ID = os.environ.get('AKIAZD6YHAC5DTSC2AXS')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_ACCESS_KEY_ID = os.environ.get('')
+AWS_SECRET_ACCESS_KEY = os.environ.get('')
 AWS_STORAGE_BUCKET_NAME = 'webpres'
 
 AWS_DEFAULT_ACL = 'public-read'
